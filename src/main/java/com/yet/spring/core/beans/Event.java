@@ -1,12 +1,19 @@
 package com.yet.spring.core.beans;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.Random;
 
+@Component("event")
+@Scope("prototype")
 public class Event {
 
     private final int id = new Random().nextInt();
+    @Autowired
     private String message;
     private final Date date;
     private final DateFormat df;
@@ -19,6 +26,7 @@ public class Event {
         this.message = message;
     }
 
+    @Autowired
     public Event(Date date, DateFormat df) {
         this.date = date;
         this.df = df;

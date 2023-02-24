@@ -3,13 +3,20 @@ package com.yet.spring.core;
 import com.yet.spring.core.beans.Client;
 import com.yet.spring.core.beans.Event;
 import com.yet.spring.core.beans.EventType;
-import com.yet.spring.core.loggers.*;
-import org.springframework.context.ApplicationContext;
+import com.yet.spring.core.context.AppConfiguration;
+import com.yet.spring.core.loggers.CacheFileEventLogger;
+import com.yet.spring.core.loggers.CombinedEventLogger;
+import com.yet.spring.core.loggers.ConsoleEventLogger;
+import com.yet.spring.core.loggers.EventLogger;
 import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
 import java.util.Map;
 
+@Component("app")
+@Scope("singleton")
 public class App {
 
     private static ConfigurableApplicationContext ctx;
@@ -18,7 +25,7 @@ public class App {
     private Map<EventType, EventLogger> loggers;
 
     public static void main(String[] args) {
-        ctx = new ClassPathXmlApplicationContext("spring.xml");
+        ctx = new AnnotationConfigApplicationContext(AppConfiguration.class);
 
         App app = (App) ctx.getBean("app");
 
