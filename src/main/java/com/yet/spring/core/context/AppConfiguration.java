@@ -4,10 +4,7 @@ import com.yet.spring.core.App;
 import com.yet.spring.core.beans.Client;
 import com.yet.spring.core.beans.Event;
 import com.yet.spring.core.beans.EventType;
-import com.yet.spring.core.loggers.CombinedEventLogger;
-import com.yet.spring.core.loggers.ConsoleEventLogger;
-import com.yet.spring.core.loggers.EventLogger;
-import com.yet.spring.core.loggers.FileEventLogger;
+import com.yet.spring.core.loggers.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -43,7 +40,12 @@ public class AppConfiguration {
 
     @Bean(name = "event")
     public Event event() {
-        return new Event(new java.util.Date(), java.text.DateFormat.getDateTimeInstance());
+        return new Event(new java.util.Date(), java.text.DateFormat.getDateTimeInstance(), "test");
+    }
+
+    @Bean(name = "cacheFileEventLogger")
+    public CacheFileEventLogger cacheFileEventLogger() {
+        return new CacheFileEventLogger("fileName_1", 5);
     }
 
     private String getStringProperty(String propertyKey) {

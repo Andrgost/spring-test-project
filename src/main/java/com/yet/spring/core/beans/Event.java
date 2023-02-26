@@ -1,6 +1,7 @@
 package com.yet.spring.core.beans;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -18,18 +19,20 @@ public class Event {
     private final Date date;
     private final DateFormat df;
 
-    public String getMessage() {
-        return message;
+    @Autowired
+    public Event(Date date, DateFormat df, String message) {
+        this.date = date;
+        this.df = df;
+        this.message = message;
     }
 
     public void setMessage(String message) {
         this.message = message;
     }
 
-    @Autowired
-    public Event(Date date, DateFormat df) {
-        this.date = date;
-        this.df = df;
+    @Bean
+    public String getMessage() {
+        return message;
     }
 
     @Override

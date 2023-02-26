@@ -11,13 +11,13 @@ import org.springframework.stereotype.Component;
 public class Client {
 
     @Autowired
-    @Value("${client.id}")
+    @Value("$.id")
     private String id;
     @Autowired
-    @Value("${client.name}")
+    @Value("$.name")
     private String fullName;
     @Autowired
-    @Value("${client.greeting}")
+    @Value("$.greeting")
     private String greeting;
 
     public String getId() {
@@ -36,7 +36,7 @@ public class Client {
 
     @Autowired
     @Qualifier("clientId")
-    @Value("${client.id}")
+    @Value("$.id")
     public void setId(String id) {
         this.id = id;
     }
@@ -47,13 +47,13 @@ public class Client {
 
     @Autowired
     @Qualifier("clientFullName")
-    @Value("${client.name}")
+    @Value("$.name")
     public void setFullName(String fullName) {
         this.fullName = fullName;
     }
 
     @Autowired
-    @Value("${client.greeting}")
+    @Value("$.greeting")
     public void setGreeting(String greeting) {
         this.greeting = greeting;
     }
